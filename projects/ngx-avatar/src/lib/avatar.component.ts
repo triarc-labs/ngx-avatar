@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, OnDestroy, input, output } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, OnDestroy, input, output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Source } from './sources/source';
@@ -55,7 +55,8 @@ type Style = Partial<CSSStyleDeclaration>;
         }
       }
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
   public round = input(true);
@@ -91,7 +92,8 @@ export class AvatarComponent implements OnChanges, OnDestroy {
 
   constructor(
     public sourceFactory: SourceFactory,
-    private avatarService: AvatarService
+    private avatarService: AvatarService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   public onAvatarClicked(): void {
@@ -173,6 +175,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
         width: this.size() + 'px',
         height: this.size() + 'px'
       };
+      this.cdr.detectChanges();
     }
   }
 
@@ -185,6 +188,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private buildTextAvatar(avatarSource: Source): void {
     this.avatarText = avatarSource.getAvatar(+this.initialsSize());
     this.avatarStyle = this.getInitialsStyle(avatarSource.sourceId);
+    this.cdr.detectChanges();
   }
 
   private buildImageAvatar(avatarSource: Source): void {
@@ -193,6 +197,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
       this.fetchAndProcessAsyncAvatar(avatarSource);
     } else {
       this.avatarSrc = avatarSource.getAvatar(+this.size());
+      this.cdr.detectChanges();
     }
   }
 

@@ -10,12 +10,8 @@ import { AvatarConfigService } from './avatar-config.service';
 import { Gravatar } from './sources/gravatar';
 
 const avatarServiceConfigSpy = {
-  getAvatarSources: jasmine
-    .createSpy('avatarConfigService.getAvatarSources')
-    .and.returnValue(defaultSources),
-  getAvatarColors: jasmine
-    .createSpy('avatarConfigService.getAvatarColors')
-    .and.returnValue(defaultColors)
+  getAvatarSources: jest.fn().mockReturnValue(defaultSources),
+  getAvatarColors: jest.fn().mockReturnValue(defaultColors)
 };
 
 describe('AvatarService', () => {

@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AvatarModule } from 'ngx-avatar';
+import { AvatarComponent } from 'ngx-avatar';
 import { UserService } from './user.service';
 import { Source } from '../../projects/ngx-avatar/src/lib/sources/source';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, AvatarModule],
+  imports: [CommonModule, AvatarComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
-  userName = 'Haithem Mosbahi';
-  userFB = 'wrongId';
+export class AppComponent {
+  private readonly defaultName = 'Haithem Mosbahi';
+  private readonly defaultFB = 'wrongId';
+
   customStyle = {
     backgroundColor: '#27ae60',
     border: '1px solid #bdc3c7',
@@ -26,13 +29,18 @@ export class AppComponent implements OnInit {
 
   constructor(public userService: UserService) {}
 
-  ngOnInit() {
-    this.userService.fetchInformation().subscribe(user => {
-      this.userName = user.username;
-      this.userService.getUserFacebook().subscribe(data => {
-        this.userFB = data;
-      });
-    });
+  private readonly userSig = toSignal(this.userService.fetchInformation(), { initialValue: null as any });
+  private readonly fbSig = toSignal(this.userService.getUserFacebook(), { initialValue: this.defaultFB });
+
+  readonly userNameSig = computed(() => (this.userSig()?.username as string | undefined) ?? this.defaultName);
+  readonly userFBSig = computed(() => this.fbSig());
+
+  get userName(): string {
+    return this.userNameSig();
+  }
+
+  get userFB(): string {
+    return this.userFBSig();
   }
 
   avatarClicked(event: Source) {

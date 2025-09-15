@@ -50,7 +50,7 @@ describe('AvatarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AvatarComponent],
+      imports: [AvatarComponent],
       providers: [
         SourceFactory,
         { provide: AvatarService, useClass: AvatarServiceMock }
@@ -93,7 +93,7 @@ describe('AvatarComponent', () => {
   });
 
   it('should try next async source if first async source fails', () => {
-    spyOn(avatarService, 'isTextAvatar').and.returnValue(false);
+    jest.spyOn(avatarService, 'isTextAvatar').mockReturnValue(false);
     fixture.componentRef.setInput('googleId', 'invalid@example.com');
     fixture.componentRef.setInput('githubId', 'github-username');
 
