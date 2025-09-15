@@ -3,7 +3,11 @@ name: Release
 on:
   push:
     branches: [ main, master ]
-
+# Applies to all jobs in this workflow
+permissions:
+  contents: write      # allow pushing commits/tags
+  issues: write        # allow creating release notes comments
+  pull-requests: write # allow posting on PRs
 jobs:
   release:
     runs-on: ubuntu-latest
