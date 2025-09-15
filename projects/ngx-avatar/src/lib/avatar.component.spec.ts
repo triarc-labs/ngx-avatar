@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AvatarComponent } from './avatar.component';
 import { SourceFactory } from './sources/source.factory';
@@ -48,8 +48,8 @@ describe('AvatarComponent', () => {
   let fixture: ComponentFixture<AvatarComponent>;
   let avatarService: AvatarService;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AvatarComponent],
       providers: [
         SourceFactory,
@@ -61,7 +61,7 @@ describe('AvatarComponent', () => {
     component = fixture.componentInstance;
     avatarService = TestBed.inject(AvatarService);
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "module": "commonjs",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "files": [],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.ts",
+    "projects/**/*.spec.ts",
+    "projects/**/*.ts"
+  ]
+}

@@ -32,4 +32,4 @@ jobs:
         env:
           CI: true
         run: |
-          yarn ng test ngx-avatar
+          yarn test
