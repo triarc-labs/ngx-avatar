@@ -24,7 +24,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
+      - name: Build Package
+        run: yarn build ngx-avatar
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
