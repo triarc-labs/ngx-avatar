@@ -69,44 +69,33 @@ describe('AvatarComponent', () => {
 
   describe('AvatarText', () => {
     it('should display the initials of the given value', () => {
-      component.initials = 'John Doe';
-      component.ngOnChanges({
-        initials: new SimpleChange(null, 'John Doe', true)
-      });
+      fixture.componentRef.setInput('name', 'Marco');
 
       fixture.detectChanges();
 
       const avatarTextEl = fixture.debugElement.query(
         By.css('.avatar-container > div')
       );
-      expect(avatarTextEl.nativeElement.textContent.trim()).toBe('JD');
+      expect(avatarTextEl.nativeElement.textContent.trim()).toBe('M');
     });
   });
 
   it('should not try again failed sources', () => {
-    component.gravatar = 'invalid@example.com';
-    component.initials = 'John Doe';
-    component.ngOnChanges({
-      gravatar: new SimpleChange(null, 'invalid@example.com', true),
-      initials: new SimpleChange(null, 'John Doe', true)
-    });
+    fixture.componentRef.setInput('gravatarId', 'invalid@example.com');
+    fixture.componentRef.setInput('name', 'Marco');
 
     fixture.detectChanges();
 
     const avatarTextEl = fixture.debugElement.query(
         By.css('.avatar-container > div')
     );
-    expect(avatarTextEl.nativeElement.textContent.trim()).toBe('JD');
+    expect(avatarTextEl.nativeElement.textContent.trim()).toBe('M');
   });
 
   it('should try next async source if first async source fails', () => {
     spyOn(avatarService, 'isTextAvatar').and.returnValue(false);
-    component.google = 'invalid@example.com';
-    component.github = 'github-username';
-    component.ngOnChanges({
-      google: new SimpleChange(null, 'invalid@example.com', true),
-      github: new SimpleChange(null, 'github-username', true)
-    });
+    fixture.componentRef.setInput('googleId', 'invalid@example.com');
+    fixture.componentRef.setInput('githubId', 'github-username');
 
     fixture.detectChanges();
 
