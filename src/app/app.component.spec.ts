@@ -13,8 +13,7 @@ const userServiceStub = {
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, AppComponent],
       providers: [{ provide: UserService, use: userServiceStub }],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

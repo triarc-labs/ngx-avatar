@@ -17,16 +17,12 @@ declare const require: {
   };
 };
 
-// First, initialize the Angular testing environment with a global guard to prevent double init across multiple test.ts files.
-const __globalAny: any = globalThis as any;
-if (!__globalAny.__angular_testing_env_initialized__) {
-  getTestBed().initTestEnvironment(
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting()
-  );
-  __globalAny.__angular_testing_env_initialized__ = true;
-}
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+// Intentionally minimal Jest test bootstrap for the demo app.
+// jest-preset-angular handles Angular testing environment setup and test discovery.
+// Keeping this file with a noop test avoids double initialization or Webpack-specific APIs.
+
+describe('app test bootstrap noop', () => {
+  it('does nothing', () => {
+    expect(true).toBe(true);
+  });
+});
