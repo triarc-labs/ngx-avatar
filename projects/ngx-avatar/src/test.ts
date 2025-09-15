@@ -1,28 +1,9 @@
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
+// Intentionally minimal Jest test suite to avoid double Angular TestBed initialization.
+// The root-level src/test.ts initializes the Angular testing environment for all specs.
+// Keeping this file free of Angular init prevents duplication while ensuring Jest sees a valid suite.
 
-import { getTestBed } from '@angular/core/testing';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
-
-declare const require: {
-  context(
-    path: string,
-    deep?: boolean,
-    filter?: RegExp,
-  ): {
-    keys(): string[];
-    <T>(id: string): T;
-  };
-};
-
-// First, initialize the Angular testing environment.
-getTestBed().initTestEnvironment(
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting()
-);
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+describe('library test bootstrap noop', () => {
+  it('does nothing', () => {
+    expect(true).toBe(true);
+  });
+});

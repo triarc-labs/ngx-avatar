@@ -4,7 +4,7 @@ import { AvatarSource } from './sources/avatar-source.enum';
 import { AVATAR_CONFIG } from './avatar-config.token';
 import { AvatarConfig } from './avatar-config';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AvatarConfigService {
   constructor(
     @Optional()

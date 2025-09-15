@@ -13,9 +13,6 @@ import { AvatarConfigService } from './avatar-config.service';
  */
 export function provideAvatar(avatarConfig?: AvatarConfig): Provider[] {
   return [
-    SourceFactory,
-    AvatarService,
-    AvatarConfigService,
     { provide: AVATAR_CONFIG, useValue: avatarConfig ? avatarConfig : {} }
   ];
 }

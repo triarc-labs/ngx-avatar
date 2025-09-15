@@ -17,7 +17,7 @@ import { AvatarSource } from './avatar-source.enum';
  * Used to create Source implementation class based
  * on the source Type
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SourceFactory {
   private sources: { [key: string]: SourceCreator } = {};
 
