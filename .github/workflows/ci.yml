@@ -28,8 +28,8 @@ jobs:
       - name: Build Demo
         run: yarn build ngx-avatar-demo
 
-      - name: Test (headless Chrome)
+      - name: Test Jest
         env:
           CI: true
         run: |
-          xvfb-run -a yarn test --watch=false --browsers=ChromeHeadless --no-progress
+          yarn ng test
