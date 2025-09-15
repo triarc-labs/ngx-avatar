@@ -2,6 +2,6 @@
  * Represents the User contract
  */
 export interface User {
-    username: string;
-    facebookId: string;
+  username: string;
+  facebookId: string;
 }

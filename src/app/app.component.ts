@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   imports: [CommonModule, AvatarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   private readonly defaultName = 'Haithem Mosbahi';
@@ -22,17 +22,23 @@ export class AppComponent {
     border: '1px solid #bdc3c7',
     borderRadius: '50%',
     color: 'white',
-    cursor: 'pointer'
+    cursor: 'pointer',
   };
 
   failedSources: number[] = [];
 
   constructor(public userService: UserService) {}
 
-  private readonly userSig = toSignal(this.userService.fetchInformation(), { initialValue: null as any });
-  private readonly fbSig = toSignal(this.userService.getUserFacebook(), { initialValue: this.defaultFB });
+  private readonly userSig = toSignal(this.userService.fetchInformation(), {
+    initialValue: null as any,
+  });
+  private readonly fbSig = toSignal(this.userService.getUserFacebook(), {
+    initialValue: this.defaultFB,
+  });
 
-  readonly userNameSig = computed(() => (this.userSig()?.username as string | undefined) ?? this.defaultName);
+  readonly userNameSig = computed(
+    () => (this.userSig()?.username as string | undefined) ?? this.defaultName,
+  );
   readonly userFBSig = computed(() => this.fbSig());
 
   get userName(): string {

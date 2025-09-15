@@ -10,7 +10,8 @@
     "start": "ng serve",
     "build": "ng build",
     "postbuild": "node scripts/copy-artifacts.js",
-    "test": "jest --config ./jest.config.js"
+    "test": "jest --config ./jest.config.js",
+    "prettier": "prettier --write \"src/**/*.{ts,json,html,scss}\""
   },
   "private": true,
   "dependencies": {

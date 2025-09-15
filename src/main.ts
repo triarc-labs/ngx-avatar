@@ -13,6 +13,6 @@ bootstrapApplication(AppComponent, {
     provideZonelessChangeDetection(),
     provideHttpClient(),
     UserService,
-    provideAvatar({ colors: avatarColors })
-  ]
-}).catch(err => console.error(err));
+    provideAvatar({ colors: avatarColors }),
+  ],
+}).catch((err) => console.error(err));

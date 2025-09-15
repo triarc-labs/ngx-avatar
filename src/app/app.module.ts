@@ -12,12 +12,12 @@ const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
 @NgModule({
   imports: [
     BrowserModule,
-    AvatarModule.forRoot({
-      colors: avatarColors
+    provideAvatar({
+      colors: avatarColors,
     }),
-    AppComponent
+    AppComponent,
   ],
   providers: [UserService, provideHttpClient()],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

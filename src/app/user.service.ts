@@ -9,17 +9,17 @@ import { HttpClient } from '@angular/common/http';
  */
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   fetchInformation(): Observable<User> {
-    return this.http.get('assets/data/data.json').pipe(
-      map(response => response as User)
-    );
+    return this.http
+      .get('assets/data/data.json')
+      .pipe(map((response) => response as User));
   }
 
   getUserFacebook(): Observable<string> {
-    return this.http.get<{ facebookId: string}>('assets/data/data.json').pipe(
-      map(response => response.facebookId )
-    );
+    return this.http
+      .get<{ facebookId: string }>('assets/data/data.json')
+      .pipe(map((response) => response.facebookId));
   }
 }

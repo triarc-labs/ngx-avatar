@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 
 const userServiceStub = {
   fetchInformation: jest.fn(),
-  getUserFacebook: jest.fn()
+  getUserFacebook: jest.fn(),
 };
 
 describe('AppComponent', () => {
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, AppComponent],
       providers: [{ provide: UserService, use: userServiceStub }],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
   it('should create the app', () => {

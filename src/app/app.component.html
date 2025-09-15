@@ -1,58 +1,83 @@
-
 <div>
   <h2>Avatar from different sources</h2>
-<ngx-avatar (clickOnAvatar)="avatarClicked($event)" facebookId="1508319875" size="70"></ngx-avatar>
-<!--<ngx-avatar googleId="103055244388830425867" [round]="false" size="70"></ngx-avatar>-->
-<ngx-avatar githubId="sweko" size="70" [round]="false"></ngx-avatar>
-<ngx-avatar instagramId="dccomics" size="70"></ngx-avatar>
+  <ngx-avatar
+    (clickOnAvatar)="avatarClicked($event)"
+    facebookId="1508319875"
+    size="70"></ngx-avatar>
+  <!--<ngx-avatar googleId="103055244388830425867" [round]="false" size="70"></ngx-avatar>-->
+  <ngx-avatar githubId="sweko" size="70" [round]="false"></ngx-avatar>
+  <ngx-avatar instagramId="dccomics" size="70"></ngx-avatar>
 
-<!--&lt;!&ndash; use facebook as avatar source, if it fails, it will use gravatar &ndash;&gt;-->
-<ngx-avatar facebookId="15349439434" gravatarId="mb@triarc-labs.com" size="70"></ngx-avatar>
-<ngx-avatar gravatarId="elmosbahihaithem@gmail.com" size="70"></ngx-avatar>
+  <!--&lt;!&ndash; use facebook as avatar source, if it fails, it will use gravatar &ndash;&gt;-->
+  <ngx-avatar
+    facebookId="15349439434"
+    gravatarId="mb@triarc-labs.com"
+    size="70"></ngx-avatar>
+  <ngx-avatar gravatarId="elmosbahihaithem@gmail.com" size="70"></ngx-avatar>
 
-<ngx-avatar gravatarId="mb@triarc-labs.com" size="70"></ngx-avatar>
-<!-- use gravatar as source, if it fails, it will use a fallback image -->
-<ngx-avatar gravatarId="adde9b2b981a8083cf084c63aQDQSDQSDd86f753" src="assets/img/avatar.jpg" size="70"></ngx-avatar>
+  <ngx-avatar gravatarId="mb@triarc-labs.com" size="70"></ngx-avatar>
+  <!-- use gravatar as source, if it fails, it will use a fallback image -->
+  <ngx-avatar
+    gravatarId="adde9b2b981a8083cf084c63aQDQSDQSDd86f753"
+    src="assets/img/avatar.jpg"
+    size="70"></ngx-avatar>
 
-<br>
+  <br />
   <h2>Avatar with fallback</h2>
 
-<!-- Avatar with multiple sources -->
-<ngx-avatar facebookId="invalidFBId" xId="invalidXHandle"
-            gravatarId="invalidGravatarId"
-            name="Steven Wilson"
-            (clickOnAvatar)="avatarClicked($event)" size="70"></ngx-avatar>
+  <!-- Avatar with multiple sources -->
+  <ngx-avatar
+    facebookId="invalidFBId"
+    xId="invalidXHandle"
+    gravatarId="invalidGravatarId"
+    name="Steven Wilson"
+    (clickOnAvatar)="avatarClicked($event)"
+    size="70"></ngx-avatar>
 
-<br><br>
+  <br />
+  <br />
 
-<h2>Initials & Value Avatar</h2>
+  <h2>Initials & Value Avatar</h2>
 
-<ngx-avatar bgColor="red" fgColor="black" size="50" name="Steven Wilson" value="75%" ></ngx-avatar>
-<ngx-avatar size="50" name="Haithem Mosbahi"></ngx-avatar>
-<ngx-avatar size="50" name="John Doe"></ngx-avatar>
-<ngx-avatar size="50" name="Maikeal Akerfekdt"></ngx-avatar>
-<ngx-avatar size="50" name="Hubert Wolfeschlegelsteinhausenbergerdorff"></ngx-avatar>
-<ngx-avatar size="50" name="Haithem Mosbahi"></ngx-avatar>
+  <ngx-avatar
+    bgColor="red"
+    fgColor="black"
+    size="50"
+    name="Steven Wilson"
+    value="75%"></ngx-avatar>
+  <ngx-avatar size="50" name="Haithem Mosbahi"></ngx-avatar>
+  <ngx-avatar size="50" name="John Doe"></ngx-avatar>
+  <ngx-avatar size="50" name="Maikeal Akerfekdt"></ngx-avatar>
+  <ngx-avatar size="50" name="Hubert Wolfeschlegelsteinhausenbergerdorff"></ngx-avatar>
+  <ngx-avatar size="50" name="Haithem Mosbahi"></ngx-avatar>
 
-<br><br>
-<ngx-avatar size="40" value="75%"></ngx-avatar>
-<ngx-avatar size="40" initialsSize="2" cornerRadius="4"  [round]="false" name="Opeth Junior A"></ngx-avatar>
-<ngx-avatar size="40" value="1"></ngx-avatar>
-<ngx-avatar size="40" borderColor="#000" [round]="false" value="10"></ngx-avatar>
+  <br />
+  <br />
+  <ngx-avatar size="40" value="75%"></ngx-avatar>
+  <ngx-avatar
+    size="40"
+    initialsSize="2"
+    cornerRadius="4"
+    [round]="false"
+    name="Opeth Junior A"></ngx-avatar>
+  <ngx-avatar size="40" value="1"></ngx-avatar>
+  <ngx-avatar size="40" borderColor="#000" [round]="false" value="10"></ngx-avatar>
 
-<h2>Asynchrounous Avatars</h2>
+  <h2>Asynchrounous Avatars</h2>
 
-<ngx-avatar [style]="customStyle" size="100" [name]="userName" [facebookId]="userFB" ></ngx-avatar>
+  <ngx-avatar
+    [style]="customStyle"
+    size="100"
+    [name]="userName"
+    [facebookId]="userFB"></ngx-avatar>
 
-<h2>Failed sources are not retried</h2>
+  <h2>Failed sources are not retried</h2>
 
-<button (click)="failedSources.push(failedSources.length)">Add 1 failing source</button>
+  <button (click)="failedSources.push(failedSources.length)">Add 1 failing source</button>
 
-@for (i of failedSources; track i) {
-  <span>
-    <ngx-avatar [name]="'failing'" gravatarId="invalid@example.com"></ngx-avatar>
-  </span>
-}
-
+  @for (i of failedSources; track i) {
+    <span>
+      <ngx-avatar [name]="'failing'" gravatarId="invalid@example.com"></ngx-avatar>
+    </span>
+  }
 </div>
-
