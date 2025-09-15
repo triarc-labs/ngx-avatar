@@ -10,13 +10,13 @@ import { UserService } from './user.service';
 const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AvatarModule.forRoot({
       colors: avatarColors
-    })
+    }),
+    AppComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

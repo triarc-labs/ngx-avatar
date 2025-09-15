@@ -13,10 +13,8 @@ import { Source } from './sources/source';
 export const defaultSources = [
   AvatarSource.FACEBOOK,
   AvatarSource.GOOGLE,
-  AvatarSource.TWITTER,
   AvatarSource.INSTAGRAM,
   AvatarSource.VKONTAKTE,
-  AvatarSource.SKYPE,
   AvatarSource.GRAVATAR,
   AvatarSource.GITHUB,
   AvatarSource.CUSTOM,

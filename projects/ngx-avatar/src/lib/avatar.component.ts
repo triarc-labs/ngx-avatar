@@ -7,6 +7,7 @@ import {
   SimpleChanges,
   OnDestroy
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { Source } from './sources/source';
 import { AsyncSource } from './sources/async-source';
@@ -29,6 +30,8 @@ type Style = Partial<CSSStyleDeclaration>;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-avatar',
+  standalone: true,
+  imports: [CommonModule],
   styles: [
     `
       :host {
@@ -79,14 +82,10 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   public cornerRadius: string | number = 0;
   @Input('facebookId')
   public facebook?: string | null;
-  @Input('twitterId')
-  public twitter?: string | null;
   @Input('googleId')
   public google?: string | null;
   @Input('instagramId')
   public instagram?: string | null;
-  @Input('vkontakteId')
-  public vkontakte?: string | null;
   @Input('skypeId')
   public skype?: string | null;
   @Input('gravatarId')
@@ -291,7 +290,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   /**
    * Add avatar source
    *
-   * param sourceType avatar source type e.g facebook,twitter, etc.
+   * param sourceType avatar source type e.g facebook,x, etc.
    * param sourceValue  source value e.g facebookId value, etc.
    */
   private addSource(sourceType: AvatarSource, sourceValue: string): void {
@@ -308,7 +307,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   /**
    * Remove avatar source
    *
-   * param sourceType avatar source type e.g facebook,twitter, etc.
+   * param sourceType avatar source type e.g facebook,x, etc.
    */
   private removeSource(sourceType: AvatarSource): void {
     this.sources = this.sources.filter(source => source.sourceType !== sourceType);

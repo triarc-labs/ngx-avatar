@@ -35,18 +35,16 @@ describe('AvatarConfigService', () => {
 
     it('should override the source priority order when the user provides a valid list of sources', () => {
       const userConfig: AvatarConfig = {
-        sourcePriorityOrder: [AvatarSource.INITIALS, AvatarSource.TWITTER]
+        sourcePriorityOrder: [AvatarSource.INITIALS]
       };
       const avatarConfigService = new AvatarConfigService(userConfig);
 
       const expectedSourcesOrder = [
         AvatarSource.INITIALS,
-        AvatarSource.TWITTER,
         AvatarSource.FACEBOOK,
         AvatarSource.GOOGLE,
         AvatarSource.INSTAGRAM,
         AvatarSource.VKONTAKTE,
-        AvatarSource.SKYPE,
         AvatarSource.GRAVATAR,
         AvatarSource.GITHUB,
         AvatarSource.CUSTOM,
@@ -67,7 +65,7 @@ describe('AvatarConfigService', () => {
         AvatarSource.INITIALS,
         AvatarSource.FACEBOOK,
         AvatarSource.GOOGLE,
-        AvatarSource.TWITTER,
+        AvatarSource.X,
         AvatarSource.INSTAGRAM,
         AvatarSource.VKONTAKTE,
         AvatarSource.SKYPE,

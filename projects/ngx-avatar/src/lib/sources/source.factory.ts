@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Source } from './source';
 import { Facebook } from './facebook';
-import { Twitter } from './twitter';
 import { Google } from './google';
 import { Instagram } from './instagram';
 import { Custom } from './custom';
 import { Initials } from './initials';
 import { Gravatar } from './gravatar';
-import { Skype } from './skype';
 import { Value } from './value';
 import { Vkontakte } from './vkontakte';
 import { Github } from './github';
@@ -25,10 +23,8 @@ export class SourceFactory {
 
   constructor() {
     this.sources[AvatarSource.FACEBOOK] = Facebook;
-    this.sources[AvatarSource.TWITTER] = Twitter;
     this.sources[AvatarSource.GOOGLE] = Google;
     this.sources[AvatarSource.INSTAGRAM] = Instagram;
-    this.sources[AvatarSource.SKYPE] = Skype;
     this.sources[AvatarSource.GRAVATAR] = Gravatar;
     this.sources[AvatarSource.CUSTOM] = Custom;
     this.sources[AvatarSource.INITIALS] = Initials;

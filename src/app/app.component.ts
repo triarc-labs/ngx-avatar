@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AvatarModule } from 'ngx-avatar';
 import { UserService } from './user.service';
 import { Source } from '../../projects/ngx-avatar/src/lib/sources/source';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, AvatarModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

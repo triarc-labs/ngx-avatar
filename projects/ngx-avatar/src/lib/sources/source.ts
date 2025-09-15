@@ -7,7 +7,7 @@ import { AvatarSource } from './avatar-source.enum';
  */
 export interface Source {
   /**
-   * The avatar source type (Facebook, Twitter, etc.).
+   * The avatar source type (Facebook, X, etc.).
    */
   readonly sourceType: AvatarSource;
 
