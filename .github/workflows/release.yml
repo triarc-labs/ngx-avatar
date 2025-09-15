@@ -27,7 +27,7 @@ jobs:
       - name: Build Package
         run: yarn build ngx-avatar
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4
+        uses: cycjimmy/semantic-release-action@v5
         with:
           semantic_version: latest
           extra_plugins: |
