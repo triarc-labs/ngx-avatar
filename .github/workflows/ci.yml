@@ -16,14 +16,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build
-        run: yarn build
+      - name: Build Package
+        run: yarn build ngx-avatar
+
+      - name: Build Demo
+        run: yarn build ngx-avatar-demo
 
       - name: Test (headless Chrome)
         env:
