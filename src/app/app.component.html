@@ -48,9 +48,11 @@
 
 <button (click)="failedSources.push(failedSources.length)">Add 1 failing source</button>
 
-<span *ngFor="let i of failedSources">
+@for (i of failedSources; track i) {
+  <span>
     <ngx-avatar [name]="'failing'" gravatarId="invalid@example.com"></ngx-avatar>
-</span>
+  </span>
+}
 
 </div>
 

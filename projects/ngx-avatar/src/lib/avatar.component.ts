@@ -45,21 +45,23 @@ type Style = Partial<CSSStyleDeclaration>;
       class="avatar-container"
       [ngStyle]="hostStyle"
     >
-      <img
-        *ngIf="avatarSrc; else textAvatar"
-        [src]="avatarSrc"
-        [width]="size"
-        [height]="size"
-        [ngStyle]="avatarStyle"
-        (error)="fetchAvatarSource()"
-        class="avatar-content"
-        loading="lazy"
-      />
-      <ng-template #textAvatar>
-        <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
-          {{ avatarText }}
-        </div>
-      </ng-template>
+      @if (avatarSrc) {
+        <img
+          [src]="avatarSrc"
+          [width]="size"
+          [height]="size"
+          [ngStyle]="avatarStyle"
+          (error)="fetchAvatarSource()"
+          class="avatar-content"
+          loading="lazy"
+        />
+      } @else {
+        @if (avatarText) {
+          <div class="avatar-content" [ngStyle]="avatarStyle">
+            {{ avatarText }}
+          </div>
+        }
+      }
     </div>
   `
 })
