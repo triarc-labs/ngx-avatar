@@ -1,12 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnChanges, SimpleChanges, OnDestroy, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Source } from './sources/source';
@@ -48,8 +40,8 @@ type Style = Partial<CSSStyleDeclaration>;
       @if (avatarSrc) {
         <img
           [src]="avatarSrc"
-          [width]="size"
-          [height]="size"
+          [width]="size()"
+          [height]="size()"
           [ngStyle]="avatarStyle"
           (error)="fetchAvatarSource()"
           class="avatar-content"
@@ -66,47 +58,27 @@ type Style = Partial<CSSStyleDeclaration>;
   `
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
-  @Input()
-  public round = true;
-  @Input()
-  public size: string | number = 50;
-  @Input()
-  public textSizeRatio = 3;
-  @Input()
-  public bgColor: string | undefined;
-  @Input()
-  public fgColor = '#FFF';
-  @Input()
-  public borderColor: string | undefined;
-  @Input()
-  public style: Style = {};
-  @Input()
-  public cornerRadius: string | number = 0;
-  @Input('facebookId')
-  public facebook?: string | null;
-  @Input('googleId')
-  public google?: string | null;
-  @Input('instagramId')
-  public instagram?: string | null;
-  @Input('skypeId')
-  public skype?: string | null;
-  @Input('gravatarId')
-  public gravatar?: string | null;
-  @Input('githubId')
-  public github?: string | null;
-  @Input('src')
-  public custom?: string | null;
-  @Input('name')
-  public initials?: string | null;
-  @Input()
-  public value?: string | null;
-  @Input()
-  public placeholder?: string;
-  @Input()
-  public initialsSize: string | number = 0;
+  public round = input(true);
+  public size = input<string | number>(50);
+  public textSizeRatio = input(3);
+  public bgColor = input<string | undefined>(undefined);
+  public fgColor = input('#FFF');
+  public borderColor = input<string | undefined>(undefined);
+  public style = input<Style>({});
+  public cornerRadius = input<string | number>(0);
+  public facebook = input<string | null | undefined>(undefined, { alias: 'facebookId' });
+  public google = input<string | null | undefined>(undefined, { alias: 'googleId' });
+  public instagram = input<string | null | undefined>(undefined, { alias: 'instagramId' });
+  public skype = input<string | null | undefined>(undefined, { alias: 'skypeId' });
+  public gravatar = input<string | null | undefined>(undefined, { alias: 'gravatarId' });
+  public github = input<string | null | undefined>(undefined, { alias: 'githubId' });
+  public custom = input<string | null | undefined>(undefined, { alias: 'src' });
+  public initials = input<string | null | undefined>(undefined, { alias: 'name' });
+  public value = input<string | null | undefined>(undefined);
+  public placeholder = input<string | undefined>(undefined);
+  public initialsSize = input<string | number>(0);
 
-  @Output()
-  public clickOnAvatar: EventEmitter<Source> = new EventEmitter<Source>();
+  public clickOnAvatar = output<Source>();
 
   public isAlive = true;
   public avatarSrc: string | null = null;
@@ -198,8 +170,8 @@ export class AvatarComponent implements OnChanges, OnDestroy {
       this.sortAvatarSources();
       this.fetchAvatarSource();
       this.hostStyle = {
-        width: this.size + 'px',
-        height: this.size + 'px'
+        width: this.size() + 'px',
+        height: this.size() + 'px'
       };
     }
   }
@@ -211,7 +183,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   }
 
   private buildTextAvatar(avatarSource: Source): void {
-    this.avatarText = avatarSource.getAvatar(+this.initialsSize);
+    this.avatarText = avatarSource.getAvatar(+this.initialsSize());
     this.avatarStyle = this.getInitialsStyle(avatarSource.sourceId);
   }
 
@@ -220,7 +192,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
     if (avatarSource instanceof AsyncSource) {
       this.fetchAndProcessAsyncAvatar(avatarSource);
     } else {
-      this.avatarSrc = avatarSource.getAvatar(+this.size);
+      this.avatarSrc = avatarSource.getAvatar(+this.size());
     }
   }
 
@@ -233,18 +205,18 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private getInitialsStyle(avatarValue: string): Style {
     return {
       textAlign: 'center',
-      borderRadius: this.round ? '100%' : this.cornerRadius + 'px',
-      border: this.borderColor ? '1px solid ' + this.borderColor : '',
+      borderRadius: this.round() ? '100%' : this.cornerRadius() + 'px',
+      border: this.borderColor() ? '1px solid ' + this.borderColor() : '',
       textTransform: 'uppercase',
-      color: this.fgColor,
-      backgroundColor: this.bgColor
-        ? this.bgColor
+      color: this.fgColor(),
+      backgroundColor: this.bgColor()
+        ? this.bgColor()
         : this.avatarService.getRandomColor(avatarValue),
       font:
-        Math.floor(+this.size / this.textSizeRatio) +
+        Math.floor(+this.size() / this.textSizeRatio()) +
         'px Helvetica, Arial, sans-serif',
-      lineHeight: this.size + 'px',
-      ...this.style
+      lineHeight: this.size() + 'px',
+      ...this.style()
     };
   }
 
@@ -257,11 +229,11 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private getImageStyle(): Style {
     return {
       maxWidth: '100%',
-      borderRadius: this.round ? '50%' : this.cornerRadius + 'px',
-      border: this.borderColor ? '1px solid ' + this.borderColor : '',
-      width: this.size + 'px',
-      height: this.size + 'px',
-      ...this.style,
+      borderRadius: this.round() ? '50%' : this.cornerRadius() + 'px',
+      border: this.borderColor() ? '1px solid ' + this.borderColor() : '',
+      width: this.size() + 'px',
+      height: this.size() + 'px',
+      ...this.style(),
     };
   }
   /**
@@ -276,10 +248,10 @@ export class AvatarComponent implements OnChanges, OnDestroy {
     }
 
     this.avatarService
-        .fetchAvatar(source.getAvatar(+this.size))
+        .fetchAvatar(source.getAvatar(+this.size()))
         .pipe(
             takeWhile(() => this.isAlive),
-            map(response => source.processResponse(response, +this.size)),
+            map(response => source.processResponse(response, +this.size())),
         )
         .subscribe(
             avatarSrc => (this.avatarSrc = avatarSrc),
